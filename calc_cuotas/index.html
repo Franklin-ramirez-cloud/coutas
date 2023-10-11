@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Cuotas</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+</head>
+<body>
+    <header class="header">
+            <div class="barra">
+                <img src="/img/credit.png" alt="credit">
+            </div>
+
+            <div class="titulo margin">
+                <h1>Cálculo de Cuotas</h1>
+            </div>
+        </div>
+    </header>
+    
+    <main class="contenedor contenido-principal sombra">
+        <h3>Sistema básico de calculo de cuotas</h3>
+
+
+        <form class="formulario contenedor" id="loanForm">
+
+            <!--INGRESO DE DATOS-->
+            <div class="contenedor-grid contenedor fuentePrincipal">
+                <fieldset class="fieldset-editable">
+                    <legend>Ingrese los datos</legend>
+
+                    <div class="contenedor-campos">
+                        <div class="campo">
+                            <label>Tipo de Tasa:</label><br>
+                            <select id="seltasa">
+                                <option value="0" selected disabled>Seleccionar</option>
+                                <option value="flat">Flat</option>
+                                <option value="nivelada">Sobre Saldo</option>
+                            </select> 
+                        </div>   
+    
+                        <div class="campo">
+                            <label>Tipo de Garantía:</label><br>
+                            <select id="selgarantia" onchange="validarVehiculo()">
+                                <!--<option value="" selected disabled>Seleccionar</option>-->
+                                <option value="hipotecaria">Hipotecaria</option>
+                                <option selected value="menaje">Menaje</option>
+                                <option value="vehicular">Vehicular</option>
+                            </select>   
+                        </div>
+    
+                        <div class="campo">
+                            <label>Tasa Mensual (%):</label>
+                            <input type="text" id="tasaMensual" onkeyup="formatoPorcentaje(this)" placeholder="Ingresa la tasa mensual">
+                        </div>
+    
+                        <div class="campo">
+                            <label>Monto:</label>
+                            <input type="text" id="monto" step="0.01" onkeyup="formatoMoneda(this)" placeholder="Ingresa el monto">
+                        </div>
+    
+                        <div class="campo">
+                            <label>Plazo (Meses):</label>
+                            <input type="number" id="plazo" placeholder="Ingresa el plazo en meses">
+                        </div>
+
+                        <div class="campo">
+                            <label>Vehículos en Garantía:</label>
+                            <input disabled type="number" id="vehiculogarantia" placeholder="Cantidad de vehiculos">
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <!--CARGOS-->
+                <fieldset class="fieldset">
+                    <legend>Cargos</legend>
+
+                    <div class="contenedor-campos2">
+                        <div class="campo">
+                            <label>Gastos Papelería:</label>
+                            <input disabled type="text" id="papeleria">
+                        </div>
+    
+                        <div class="campo">
+                            <label>Consulta Buró:</label>
+                            <input disabled type="text" id="buro">
+                        </div>
+    
+                        <div class="campo">
+                            <label>Traspaso Vehicular:</label>
+                            <input disabled type="text" id="traspasos">
+                        </div>
+    
+                        <div class="campo">
+                            <label>Hipoteca:</label>
+                            <input disabled type="text" id="hipoteca">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!--TOTALES-->
+                <fieldset class="fieldset">
+                    <legend>Totales</legend>
+
+                    <div class="contenedor-campos">
+                        <div class="campo">
+                            <label>Monto a Financiar:</label>
+                            <input disabled type="text" id="capitaltotal">
+                        </div>
+    
+                        <div class="campo">
+                            <label>Intereses:</label>
+                            <input disabled type="text" id="interestotal">
+                        </div>
+
+                        <div class="campo">
+                            <label>Total Cargos:</label>
+                            <input disabled type="text" id="totalcargos">
+                        </div>
+
+                        <div class="campo">
+                            <label>Total a Pagar:</label>
+                            <input disabled type="text" id="totalapagar">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="fieldset">
+                    <legend>Cuota Mensual</legend>
+                    <div class="contenedor-cuota">
+                        <div class="campo-cuota">
+                            <input disabled type="text" class="cuota" id="cuota">
+                        </div>
+                    </div>
+                </fieldset>
+          </div>
+          <div class="botones">
+            <button disabled class="botones__calcular" type="button" id="calcular" onclick="calcularGastosPapeleria(), validarVehiculo(), garantiaVehicular(), garantiaHipoteca(), asignarValores(), gastos()">Calcular</button>
+            <button class="botones__limpiar" type="button" onclick="limpiar()">Limpiar</button>
+        </div>
+        </form>
+        <h3>Nota:</h3>
+        <p class="centrar">Siempre aclararle al cliente que las cuotas son aproximadas</p>
+    </main>
+    <footer class="footer contenedor">
+        <p>Franklin Ramírez - Todos los Derechos Reservados 2023.</p>
+    </footer>
+    <script src="/js/script.js"></script>
+</body>
+</html>
